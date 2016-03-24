@@ -1,0 +1,27 @@
+%% -*- erlang -*-
+
+{application, epgpool, [
+    {description, "Erlang postgresql pool application"},
+    {vsn, git},
+    {registered, []},
+    {applications, [
+        kernel,
+        stdlib,
+        lager,
+        epgsql,
+        poolboy
+    ]},
+    {mod, {epgpool_app, []}},
+    {env, [
+        %% {database_host, undefined},
+        {database_port, 5432},
+        %% {database_user, undefined},
+        %% {database_password, undefined},
+        %% {database_name, undefined},
+
+        {database_poolsize, 4},
+        {database_retry_sleep, 500},
+        {log_nested_checkouts, false},
+        {log_errors_verbose, false}
+    ]}
+]}.
