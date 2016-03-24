@@ -23,5 +23,8 @@
         {database_retry_sleep, 500},
         {log_nested_checkouts, false},
         {log_errors_verbose, false}
-    ]}
+    ]},
+    {maintainers, ["Yakov Kozlov"]},
+    {licenses, ["MIT"]},
+    {links, [{"Github", "https://github.com/egobrain/epgpool"}]}
 ]}.
