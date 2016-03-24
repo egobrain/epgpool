@@ -1,6 +1,4 @@
 before_install:
-   - sudo apt-get update
-   - sudo apt-get install postgresql-9.5
    - wget https://s3.amazonaws.com/rebar3/rebar3
    - chmod u+x ./rebar3
 sudo: required
