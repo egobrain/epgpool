@@ -91,8 +91,8 @@ transaction_test(_Config) ->
     {ok, 1} = epgpool:squery("insert into test(id,name) values (1, 'test')"),
     proc_lib:spawn_link(fun() ->
         epgpool:transaction(fun(C) ->
-           timer:sleep(100),
-           {ok, 1} = epgpool:squery(C, "update test set name='t1' where id=1")
+           {ok, 1} = epgpool:squery(C, "update test set name='t1' where id=1"),
+           timer:sleep(100)
         end)
     end),
     timer:sleep(10),
@@ -102,4 +102,4 @@ transaction_test(_Config) ->
         end)
     end),
     timer:sleep(200),
-    {ok, _, [{<<"t1">>}]} = epgpool:squery("select name from test where id = 1").
+    {ok, _, [{<<"t2">>}]} = epgpool:squery("select name from test where id = 1").
