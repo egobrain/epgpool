@@ -51,17 +51,19 @@ transaction(F) ->
 -spec transaction(func(A), timeout()) -> A.
 transaction(Fun, Timeout) ->
     with(fun (C) ->
-        Result =
-        try
-            {ok, [], []} = squery(C, "BEGIN"),
-            Fun(C)
+        {ok, [], []} = squery(C, "BEGIN"),
+        try Fun(C) of
+            {error, _Reason} = Err ->
+                catch (squery(C, "ROLLBACK")),
+                Err;
+            Other ->
+                {ok, [], []} = squery(C, "COMMIT"),
+                Other
         catch Class:Reason ->
             Stacktrace = erlang:get_stacktrace(),
             catch (squery(C, "ROLLBACK")),
             erlang:raise(Class, Reason, Stacktrace)
-        end,
-        {ok, [], []} = squery(C, "COMMIT"),
-        Result
+        end
     end, Timeout).
 
 -spec with(func(A)) -> A.
