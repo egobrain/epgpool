@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/egobrain/epgpool.png?branch=master)](https://travis-ci.org/egobrain/epgpool.png?branch=master)
+[![Build Status](https://travis-ci.org/egobrain/epgpool.png?branch=master)](https://travis-ci.org/egobrain/epgpool)
 [![Coveralls](https://img.shields.io/coveralls/egobrain/epgpool.svg)](https://coveralls.io/github/egobrain/epgpool)
 [![GitHub tag](https://img.shields.io/github/tag/egobrain/epgpool.svg)](https://github.com/egobrain/epgpool)
 [![Hex.pm](https://img.shields.io/hexpm/v/epgpool.svg)](https://hex.pm/packages/epgpool)
