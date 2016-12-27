@@ -26,10 +26,10 @@
 
 -type opts() :: [{atom(), any()}].
 -record(state, {
-    connection :: epgpool:connection(),
+    connection :: epgpool:connection() | undefined,
     opts :: opts(),
     owner :: pid() | undefined,
-    owner_ref :: reference()
+    owner_ref :: reference() | undefined
 }).
 
 -define(INIT_TIMEOUT, 5000).
