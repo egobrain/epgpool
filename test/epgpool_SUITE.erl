@@ -102,4 +102,8 @@ transaction_test(_Config) ->
         end)
     end),
     timer:sleep(200),
-    {ok, _, [{<<"t2">>}]} = epgpool:squery("select name from test where id = 1").
+    {ok, _, [{<<"t2">>}]} = epgpool:squery("select name from test where id = 1"),
+    {error, rollback} = epgpool:transaction(fun(C) ->
+        {error, _} = epgsql:squery(C, "SELECT * FROM undefined_table;"),
+        ok
+    end).

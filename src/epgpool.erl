@@ -58,7 +58,10 @@ transaction(Fun, Timeout) ->
                 Err;
             Other ->
                 {ok, [], []} = squery(C, "COMMIT"),
-                Other
+                case epgsql:get_cmd_status(C) of
+                    {ok, commit} -> Other;
+                    {ok, rollback} -> {error, rollback}
+                end
         catch Class:Reason ->
             Stacktrace = erlang:get_stacktrace(),
             catch (squery(C, "ROLLBACK")),
